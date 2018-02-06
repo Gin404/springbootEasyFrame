@@ -76,4 +76,14 @@ public class UserController {
 		return demoUserService.selectAllUser();
 	}
 
+	/**
+	 * 测试富文本
+	 */
+	@RequestMapping("/test")
+	public String test() {
+		return "text";
+	}
+	
+	
+	
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>CKEditor Sample</title>
+	<script src="/ckeditor/ckeditor.js"></script>
+	<script src="/ckeditor/samples/js/sample.js"></script>
+	<link rel="stylesheet" href="/samples/css/samples.css"/>
+	<!-- <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css"> -->
+</head>
+<body>
+	<div id="editor"></div>
+	<div>
+		<input type="button" value="点着玩" onclick="onon()"/>
+		<input type="button" value="点着玩" onclick="setin()"/>
+	</div>
+<script>
+	initSample();
+</script>
+<script type="text/javascript">
+//获取内容
+function onon() {
+	 var val = CKEDITOR.instances.editor.getData();
+     if (val.length == 0)
+     {
+         alert("空白");
+     }
+     else
+     {
+         console.log(val);
+     }
+}
+
+//设置内容
+function setin() {
+	CKEDITOR.instances.editor.setData('<p><img alt="" src="f6eff0e587f24719901fa7eae5d9f966.jpg" style="height:366px; width:500px" />大师法撒的发生的</p>');
+}
+</script>
+
+</body>
+</html>
