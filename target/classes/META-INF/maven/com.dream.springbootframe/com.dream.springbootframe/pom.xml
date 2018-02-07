@@ -137,4 +137,30 @@
 </dependency>
 		
 	</dependencies>
+	
+	<build>
+        <plugins>
+        
+        	<!-- 作为可执行JAR的包 在生产环境下可以使用(java -jar *.jar)
+        		在项目目录下在cmd 输入mvn package 可以打成可运行的jar -->
+           <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            
+            <!-- 自动重启 
+            	使用spring-boot-devtools模块的应用，当classpath中的文件有改变时，会自动重启！ - 就是说，默认会监视classpath入口。
+				静态资源和视图模板不需要重启！
+				注意，不同的IDE有不同的表现，例如Eclipse中只要改变了文件并保存，那就会导致classpath中的内容改变。而Intellij IDEA则需要 Build #Make Project。
+				可以通过build plugin启动应用，只要开启了forking支持，因为Devtools需要一个隔离的classloader才能运行正常。Maven下要这样开启： -->
+			<!-- <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	            <configuration>
+	                <fork>true</fork>
+	            </configuration>
+        	</plugin> -->
+            
+        </plugins>
+    </build>
 </project>
