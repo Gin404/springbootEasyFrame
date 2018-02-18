@@ -51,7 +51,10 @@ public class TestController {
 		String CKEditorFuncNum = request.getParameter("CKEditorFuncNum");
 		String filename = multipartFile.getOriginalFilename();
 		//得到文件上传的服务器路径	后面拼接static加跳转页面的@RequestMapping("/imgUpdate")内的路径
-		String path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static\\imgUpdate\\";
+		//这个上传到项目内
+//		String path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static\\imgUpdate\\";
+		//上传到tomcat的临时文件路径
+		String path = request.getSession().getServletContext().getRealPath("") + "\\imgUpdate\\";
 		
 		//解决文件同名问题
 		filename = UUID.randomUUID().toString().replace("-", "")+filename.substring(filename.lastIndexOf("."));
@@ -62,17 +65,11 @@ public class TestController {
 		try {
 		    f=File.createTempFile("tmp", null);
 		    multipartFile.transferTo(f);
-		    //f.deleteOnExit();        
+		  //真正上传
+		    FileUtils.copyFile(f, newFile);
+		    f.deleteOnExit();        
 		} catch (IOException e) {
 		    e.printStackTrace();
-		}
-	
-		//真正上传
-		try {
-			FileUtils.copyFile(f, newFile);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		
 		PrintWriter out;
