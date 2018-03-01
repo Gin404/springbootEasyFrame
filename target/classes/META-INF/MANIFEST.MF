@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: com.dream.springbootframe
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Dream
+Built-By: Administrator
 Implementation-Vendor-Id: com.dream.springbootframe
 Build-Jdk: 1.8.0_144
 Implementation-URL: http://maven.apache.org
