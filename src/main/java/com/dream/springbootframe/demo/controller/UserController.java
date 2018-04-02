@@ -35,8 +35,8 @@ public class UserController {
 	public String addPage(DemoUser user, HttpServletRequest request, Model model) {
 		if (user.getId() != null) {
 			user = demoUserService.selectFindOneUserByIdOrName(user);
-			model.addAttribute("user", user);
 		}
+		model.addAttribute("user", user);
 		return "addpage";
 	}
 	@RequestMapping("/add")
