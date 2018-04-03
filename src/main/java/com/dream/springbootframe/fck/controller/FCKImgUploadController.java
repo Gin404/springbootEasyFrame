@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Dream
  * 2018年2月5日
  *
- *
  *FCKeditor富文本上传文件
  *
  *	要把上传图片的路径在/com.dream.springbootframe/src/main/resources/static/ckeditor/config.js文件内配置
