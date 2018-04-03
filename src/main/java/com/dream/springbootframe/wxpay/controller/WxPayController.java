@@ -27,7 +27,7 @@ import java.util.TreeMap;
  */
 @RestController
 @RequestMapping("wx/pay")
-public class Wx2PayController {
+public class WxPayController {
 
     public static int defaultWidthAndHeight=200;
 
