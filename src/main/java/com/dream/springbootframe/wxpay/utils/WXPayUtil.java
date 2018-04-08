@@ -26,7 +26,12 @@ import java.security.MessageDigest;
 import java.util.*;
 import org.apache.http.impl.client.CloseableHttpClient;
 
-
+/**
+ *
+ * @author Dream
+ *
+ *  微信官方java jdk工具类筛选
+ */
 public class WXPayUtil {
 
     private static final int MAX_TOTAL = 200;
@@ -34,7 +39,6 @@ public class WXPayUtil {
     private static final int CONN_TIME_OUT = 5000;
     private static final int SOCKET_TIME_OUT = 5000;
     private static final CloseableHttpClient httpClient;
-    public static final String CHARSET = "UTF-8";
 
     static {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();

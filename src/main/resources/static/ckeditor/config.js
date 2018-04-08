@@ -37,5 +37,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
 	//上传图片路径
-	config.filebrowserUploadUrl="/imgUpdate/upfile"
+	config.filebrowserUploadUrl="/fck/upload_img"
 };

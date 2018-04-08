@@ -21,10 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * 微信扫码支付2
- *
- */
+
 @RestController
 @RequestMapping("wx/pay")
 public class WxPayController {

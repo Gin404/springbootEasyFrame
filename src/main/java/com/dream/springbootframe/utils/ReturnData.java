@@ -3,7 +3,7 @@ package com.dream.springbootframe.utils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ResponseResult<T> {
+public class ReturnData<T> {
 
     private int status = 200;
     private String message;
@@ -21,11 +21,11 @@ public class ResponseResult<T> {
     public void setData(T data) {
         this.data = data;
     }
-    public ResponseResult() {
+    public ReturnData() {
     }
 
-    public static ResponseResult<Void> ok() {
-        ResponseResult<Void> r = new ResponseResult<>();
+    public static ReturnData<Void> ok() {
+        ReturnData<Void> r = new ReturnData<>();
         r.setStatus(200);
         return r;
     }
@@ -46,8 +46,8 @@ public class ResponseResult<T> {
         this.error = error;
     }
 
-    public static <T> ResponseResult<T> of(T data) {
-        ResponseResult<T> r = new ResponseResult<T>();
+    public static <T> ReturnData<T> of(T data) {
+        ReturnData<T> r = new ReturnData<T>();
         r.setData( data );
         return r;
     }

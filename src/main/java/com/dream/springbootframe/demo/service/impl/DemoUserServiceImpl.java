@@ -14,7 +14,6 @@ import com.dream.springbootframe.demo.service.DemoUserService;
 /**
  * 
  * @author Dream
- * 2018年1月31日
  *
  *
  */
