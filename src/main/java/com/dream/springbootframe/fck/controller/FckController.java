@@ -1,12 +1,5 @@
 package com.dream.springbootframe.fck.controller;
 
-import java.io.*;
-import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.dream.springbootframe.fck.entity.Fck;
 import com.dream.springbootframe.fck.service.FckService;
 import org.apache.commons.io.FileUtils;
@@ -20,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -42,12 +41,14 @@ public class FckController {
 	/**
 	 * 
 	 * @return 跳转页面
-	 */
+	 * 已写入WebMvcPage
+	@see com.dream.springbootframe.config.WebMvcPage
 	@RequestMapping("/page")
 	public String fckpage() {
 		return "fck";
 	}
-	
+	 */
+
 	/**
 	 * 上传图片
 	 * @return

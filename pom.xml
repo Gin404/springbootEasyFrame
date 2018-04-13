@@ -20,6 +20,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<!--以下两项需要如果不配置，解析themleaft 会有问题-->
+		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+		<thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<dependencies>
@@ -28,7 +31,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<!-- Developer tools Spring Boot包含一组附加的开发期工具。 -->
         <!-- 注意，生产环境下（java -jar或者通过特定的类加载器启动），这些开发工具自动被禁止。
 			上面的 <optional>true</optional> 是一个最佳实践，可以有效阻止用于其他模块。
@@ -179,6 +182,11 @@
 			<version>1.16.16</version>
 		</dependency>
 
+		<!--webSocket-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -189,6 +197,11 @@
            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+			   <!--配置了<fork>true</fork>后在修改java文件后也就支持了热启动，不过这种方式是属于项目重启（速度比较快的项目重启），
+			   		会清空session中的值，也就是如果有用户登陆的话，项目重启后需要重新登陆。-->
+			    <configuration>
+				   <fork>true</fork>
+			    </configuration>
             </plugin>
             
             <!-- 自动重启 
