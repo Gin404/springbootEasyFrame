@@ -1,9 +1,9 @@
 package com.dream.springbootframe.demo.zsgzdemo.entity;
 
-import lombok.Data;
+		import lombok.Data;
 
 /**
- * 
+ *
  * @author Dream
  * 2018年1月31日
  *
@@ -14,5 +14,5 @@ public class DemoUser {
 
 	private String id;
 	private String name;
-	
+
 }
