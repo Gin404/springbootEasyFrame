@@ -4,8 +4,8 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+/*import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;*/
 
 /**
  * http转向https
@@ -16,7 +16,7 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 public class Http2Https {
 
     /*@Bean*/
-    public EmbeddedServletContainerFactory servletContainer() {
+    /*public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
             @Override
             protected void postProcessContext(Context context) {
@@ -31,7 +31,7 @@ public class Http2Https {
 
         tomcat.addAdditionalTomcatConnectors(HttpConnector());
         return tomcat;
-    }
+    }*/
 
     /*@Bean*/
     public Connector HttpConnector() {
