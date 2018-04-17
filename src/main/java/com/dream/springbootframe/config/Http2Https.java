@@ -1,10 +1,6 @@
 package com.dream.springbootframe.config;
 
-import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
-import org.springframework.context.annotation.Configuration;
 /*import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;*/
 
@@ -14,7 +10,7 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
  * 根据java EE开发的颠覆者 Spring Boot实战 7.4.4内http转向https示例代码所写
  * 在springboot2改变
  */
-@Configuration
+/*@Configuration*/
 public class Http2Https {
 
     /*@Bean*/
