@@ -23,7 +23,7 @@ import java.util.Map;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class UserController {
 	@RequestMapping("/add")
 	public String addUser(DemoUser user) {
 		demoUserService.addUser(user);
-		return "redirect:/";
+		return "redirect:/user/list/page";
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class UserController {
 	@RequestMapping("/delete")
 	public String delete(String id) {
 		demoUserService.deleteUser(id);
-		return "redirect:/";
+		return "redirect:/user/list/page";
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class UserController {
 	@RequestMapping("/update")
 	public String updateUser(DemoUser user) {
 		demoUserService.updateUser(user);
-		return "redirect:/";
+		return "redirect:/user/list/page";
 	}
 
 	/**
@@ -85,6 +85,18 @@ public class UserController {
 	@ResponseBody
 	public List<Map<String, Object>> selectAllUser() {
 		return demoUserService.selectAllUser();
+	}
+
+	@RequestMapping("/login")
+	public String login(DemoUser user, Model model) {
+		DemoUser u = demoUserService.selectFindOneUserByNameAndPwd(user);
+		if (u == null) {
+			model.addAttribute("user", u);
+			return "redirect:/user/login/page";
+		} else {
+			model.addAttribute("user", user);
+			return "chat";
+		}
 	}
 
 }

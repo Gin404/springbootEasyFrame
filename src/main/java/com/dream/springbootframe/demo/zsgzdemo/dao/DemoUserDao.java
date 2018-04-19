@@ -12,7 +12,7 @@ public interface DemoUserDao {
 	/**
 	 * 增
 	 */
-	@Insert("insert into user(id, name) values(uuid(), #{name})")
+	@Insert("insert into user(id, name) values(uuid(), #{name}, #{pwd)")
 	int addUser(DemoUser user);
 	
 	/**
@@ -24,7 +24,7 @@ public interface DemoUserDao {
 	/**
 	 * 改
 	 */
-	@Update("update user set name = #{name} where id = #{id}")
+	@Update("update user set name = #{name}, pwd = #{pwd} where id = #{id}")
 	int updateUser(DemoUser user);
 	
 	/**
@@ -38,5 +38,11 @@ public interface DemoUserDao {
 	 */
 	@Select("select id, name from user where id = #{id}")
 	DemoUser selectFindOneUserByIdOrName(DemoUser user);
+
+	/**
+	 * 登录
+	 */
+	@Select("select *from user where name = #{name} and pwd = #{pwd}")
+	DemoUser selectFindOneUserByNameAndPwd(DemoUser user);
 	
 }

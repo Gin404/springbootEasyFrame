@@ -40,4 +40,9 @@ public interface DemoUserService {
 	 */
 	DemoUser selectFindOneUserByIdOrName(DemoUser user);
 
+	/**
+	 * 登录
+	 */
+	DemoUser selectFindOneUserByNameAndPwd(DemoUser user);
+
 }

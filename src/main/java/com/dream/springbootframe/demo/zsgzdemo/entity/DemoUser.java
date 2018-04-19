@@ -14,5 +14,6 @@ public class DemoUser {
 
 	private String id;
 	private String name;
+	private String pwd;
 
 }

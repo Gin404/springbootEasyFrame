@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <input type="button" value="1" id="button1"/>
+    <input type="button" value="2" id="button2"/><br/>
+    <div id="title"></div>
+</body>
+<script>
+    var user;
+    $(function() {
+        user = [[${user}]];
+        console.log(user);
+    })
+
+</script>
+</html>

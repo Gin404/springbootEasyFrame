@@ -65,5 +65,10 @@ public class DemoUserServiceImpl implements DemoUserService {
 		return demoUserDao.selectFindOneUserByIdOrName(user);
 	}
 
-	
+	/**
+	 * 登录
+	 */
+	public DemoUser selectFindOneUserByNameAndPwd(DemoUser user) {
+		return demoUserDao.selectFindOneUserByNameAndPwd(user);
+	}
 }

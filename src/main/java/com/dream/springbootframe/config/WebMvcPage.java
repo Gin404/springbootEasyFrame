@@ -16,7 +16,8 @@ public class WebMvcPage implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //UserController
-        registry.addViewController("").setViewName("listpage");
+        registry.addViewController("/user/list/page").setViewName("listpage");
+        registry.addViewController("/user/login/page").setViewName("login");
 
         //FckController
         registry.addViewController("/fck/page").setViewName("fck");
