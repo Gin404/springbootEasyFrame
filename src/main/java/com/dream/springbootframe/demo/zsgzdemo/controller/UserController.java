@@ -94,7 +94,7 @@ public class UserController {
 			model.addAttribute("user", u);
 			return "redirect:/user/login/page";
 		} else {
-			model.addAttribute("user", user);
+			model.addAttribute("user", u);
 			return "chat";
 		}
 	}

@@ -8,11 +8,19 @@ import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
 
+/**
+ *
+ * @author Dream
+ *
+ *  自定义的Handler
+ */
 public class MyHandler extends SimpleChannelInboundHandler<Object> {
 
     private WebSocketServerHandshaker handshaker;
     private ChannelHandlerContext ctx;
     private String sessionId;
+    private String table;
+    private String name;
 
     @Override
     protected void messageReceived(ChannelHandlerContext ctx, Object o) throws Exception {
@@ -36,6 +44,20 @@ public class MyHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {
         super.close(ctx, promise);
+        System.out.println("delete : id = " + this.sessionId + " table = " + this.table);
+        //关闭连接将移除该用户消息
+        InformationOperateMap.delete(this.sessionId, this.table);
+        Mage mage = new Mage();
+        mage.setName(this.name);
+        mage.setMessage("20002");
+        //将用户下线信息发送给为下线用户
+        InformationOperateMap.map.get(this.table).forEach((id, iom) -> {
+            try {
+                iom.sead(mage);
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        });
     }
 
     /**
@@ -105,11 +127,61 @@ public class MyHandler extends SimpleChannelInboundHandler<Object> {
             return;
         }
         // 当前只支持文本消息，不支持二进制消息
-        if (!(frame instanceof TextWebSocketFrame)) {
-            throw new UnsupportedOperationException("当前只支持文本消息，不支持二进制消息");
+        if ((frame instanceof TextWebSocketFrame)) {
+            //throw new UnsupportedOperationException("当前只支持文本消息，不支持二进制消息");
+            //获取发来的消息
+            String text =((TextWebSocketFrame)frame).text();
+            System.out.println("mage : " + text);
+            //消息转成Mage
+            Mage mage = Mage.strJson2Mage(text);
+            //判断是以存在用户信息
+            if (InformationOperateMap.isNo(mage)) {
+                //判断是否有这个聊天室
+                if (InformationOperateMap.map.containsKey(mage.getTable())) {
+                    //判断是否有其他用户
+                    if (InformationOperateMap.map.get(mage.getTable()).size() > 0) {
+                        InformationOperateMap.map.get(mage.getTable()).forEach((id, iom) -> {
+                            try {
+                                Mage mag = iom.getMage();
+                                mag.setMessage("30003");
+                                //发送其他用户信息给要注册用户
+                                this.sendWebSocket(mag.toJson());
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
+                        });
+                    }
+                }
+                //添加用户
+                InformationOperateMap.add(ctx, mage);
+                System.out.println("add : " + mage.toJson());
+            }
+            //将用户发送的消息发给所有在同一聊天室内的用户
+            InformationOperateMap.map.get(mage.getTable()).forEach((id, iom) -> {
+                try {
+                    iom.sead(mage);
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            });
+            //记录id和table 当页面刷新或浏览器关闭时，注销掉此链路
+            this.sessionId = mage.getId();
+            this.table = mage.getTable();
+            this.name = mage.getName();
+        } else {
+            System.err.println("------------------error--------------------------");
         }
+    }
 
-
-
+    /**
+     * WebSocket返回
+     */
+    public void sendWebSocket(String msg) throws Exception {
+        if (this.handshaker == null || this.ctx == null || this.ctx.isRemoved()) {
+            throw new Exception("尚未握手成功，无法向客户端发送WebSocket消息");
+        }
+        //发送消息
+        this.ctx.channel().write(new TextWebSocketFrame(msg));
+        this.ctx.flush();
     }
 }
