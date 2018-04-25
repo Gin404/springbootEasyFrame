@@ -1,4 +1,4 @@
-package com.dream.springbootframe.demo.websocket;
+package com.dream.springbootframe.websocket;
 
 import lombok.Data;
 

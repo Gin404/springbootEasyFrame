@@ -1,6 +1,6 @@
-package com.dream.springbootframe.demo.zsgzdemo.service;
+package com.dream.springbootframe.zsgzdemo.service;
 
-import com.dream.springbootframe.demo.zsgzdemo.entity.DemoUser;
+import com.dream.springbootframe.zsgzdemo.entity.DemoUser;
 
 import java.util.List;
 import java.util.Map;

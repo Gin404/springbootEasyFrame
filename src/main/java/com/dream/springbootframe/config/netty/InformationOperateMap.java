@@ -51,10 +51,11 @@ public class InformationOperateMap {
         }
     }
 
+
     /**
      * 判断是否存在该用户
      * @param mage
-     * @return 存在true 不存在false
+     * @return 存在false 不存在true
      */
     public static boolean isNo(Mage mage) {
         return map.containsKey(mage.getTable()) ? map.get(mage.getTable()).containsKey(mage.getId()) ? false : true : true;

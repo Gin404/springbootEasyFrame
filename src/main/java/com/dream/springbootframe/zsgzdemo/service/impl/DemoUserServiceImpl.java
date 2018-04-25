@@ -1,8 +1,8 @@
-package com.dream.springbootframe.demo.zsgzdemo.service.impl;
+package com.dream.springbootframe.zsgzdemo.service.impl;
 
-import com.dream.springbootframe.demo.zsgzdemo.dao.DemoUserDao;
-import com.dream.springbootframe.demo.zsgzdemo.entity.DemoUser;
-import com.dream.springbootframe.demo.zsgzdemo.service.DemoUserService;
+import com.dream.springbootframe.zsgzdemo.dao.DemoUserDao;
+import com.dream.springbootframe.zsgzdemo.entity.DemoUser;
+import com.dream.springbootframe.zsgzdemo.service.DemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

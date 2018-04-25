@@ -1,4 +1,4 @@
-package com.dream.springbootframe.demo.zsgzdemo.entity;
+package com.dream.springbootframe.zsgzdemo.entity;
 
 		import lombok.Data;
 

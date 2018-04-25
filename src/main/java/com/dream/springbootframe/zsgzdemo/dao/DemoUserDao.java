@@ -1,7 +1,7 @@
-package com.dream.springbootframe.demo.zsgzdemo.dao;
+package com.dream.springbootframe.zsgzdemo.dao;
 
 
-import com.dream.springbootframe.demo.zsgzdemo.entity.DemoUser;
+import com.dream.springbootframe.zsgzdemo.entity.DemoUser;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -52,4 +52,8 @@ public class Mage {
         return gson.writeValueAsString(this);
     }
 
+    public Mage setTableId(String table) {
+        this.setTable(table);
+        return this;
+    }
 }

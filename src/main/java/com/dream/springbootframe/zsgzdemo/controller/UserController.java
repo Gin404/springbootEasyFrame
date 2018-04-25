@@ -1,8 +1,8 @@
-package com.dream.springbootframe.demo.zsgzdemo.controller;
+package com.dream.springbootframe.zsgzdemo.controller;
 
 
-import com.dream.springbootframe.demo.zsgzdemo.entity.DemoUser;
-import com.dream.springbootframe.demo.zsgzdemo.service.DemoUserService;
+import com.dream.springbootframe.zsgzdemo.entity.DemoUser;
+import com.dream.springbootframe.zsgzdemo.service.DemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -88,15 +88,10 @@ public class UserController {
 	}
 
 	@RequestMapping("/login")
-	public String login(DemoUser user, Model model) {
+	public String login(DemoUser user, Model model, HttpServletRequest request, String type) {
 		DemoUser u = demoUserService.selectFindOneUserByNameAndPwd(user);
-		if (u == null) {
-			model.addAttribute("user", u);
-			return "redirect:/user/login/page";
-		} else {
-			model.addAttribute("user", u);
-			return "chat";
-		}
+		model.addAttribute("user", u);
+		return u == null ? "redirect:/user/login/page" : type.equals("1") ? "chat" : "matching";
 	}
 
 }
