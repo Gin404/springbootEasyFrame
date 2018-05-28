@@ -253,6 +253,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
+
+		<!--覆盖默认的内置tomcat-->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>-->
     </dependencies>
 
 	<build>
@@ -263,10 +270,35 @@
            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-			   <!--配置了<fork>true</fork>后在修改java文件后也就支持了热启动，不过这种方式是属于项目重启（速度比较快的项目重启），
-			   		会清空session中的值，也就是如果有用户登陆的话，项目重启后需要重新登陆。-->
 			    <configuration>
+					<!--配置了<fork>true</fork>后在修改java文件后也就支持了热启动，不过这种方式是属于项目重启（速度比较快的项目重启），
+			   		会清空session中的值，也就是如果有用户登陆的话，项目重启后需要重新登陆。-->
 				   <fork>true</fork>
+					<!--注册为Linux的服务-->
+					<!--打成jar包-->
+					<!--1.init.d部署
+						注册服务:sudo ln -s jar的路径 /etc/init.d/你要起的服务名
+						启动服务:service 服务名 start
+						停止服务:service 服务名 stop
+						服务状态:service 服务名 status
+						开机启动:chkconfig 服务名 on -->
+					<!--2.systemd部署
+						在/etc/sysemd/system/目录下创建文件 服务名.service
+						内容:
+							[Unit]
+							Description = 服务名
+							After = syslog.target
+							[Service]
+							ExecStart = jdk路径 -jar jar包路径
+							[Install]
+							WantedBy = multi-user.target
+						启动服务:systemctl start 服务名 或 systemctl start 服务名.service
+						停止服务:systemctl stop 服务名 或 systemctl stop 服务名.service
+						服务状态:systemctl status 服务名 或 systemctl status 服务名.service
+						开机启动:systemctl enbale 服务名 或 systemctl enbale 服务名.service
+						项目日志:journalctl -u 服务名 或 journalctl -u 服务名.service
+					-->
+					<!--<executable>true</executable>-->
 			    </configuration>
             </plugin>
             
