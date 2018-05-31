@@ -3,6 +3,7 @@ package com.dream.springbootframe.jpa.controller;
 
 import com.dream.springbootframe.jpa.entity.Student;
 import com.dream.springbootframe.jpa.service.StudentService;
+import com.dream.springbootframe.zsgzdemo.dao.CsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
+
+import static java.lang.System.currentTimeMillis;
 
 /**
  * 
@@ -24,6 +28,27 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private CsDao csDao;
+
+	/**
+	 * 测试
+	 */
+	@RequestMapping("/cs")
+	public String cs() {
+		long jdbcStrat = currentTimeMillis();
+		Student sd = new Student(UUID.randomUUID().toString(), "vueName", "1", "add1");
+		csDao.add(sd);
+		long jdbcEnd = currentTimeMillis();
+		System.out.println(jdbcEnd - jdbcStrat);
+
+		long jpaStrat = currentTimeMillis();
+		Student s = new Student(UUID.randomUUID().toString(), "vueName", "2", "add2");
+		csDao.add(s);
+		long jpaEnd = currentTimeMillis();
+		System.out.println(jpaEnd - jpaStrat);
+		return "cs";
+	}
 
 	@RequestMapping("/findAll")
 	public List<Student> findAll(int sort) {

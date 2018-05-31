@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface StudentService {
 
+	Student save(Student s);
+
 	List<Student> findAll();
 
 	List<Student> findAll(Sort sort);

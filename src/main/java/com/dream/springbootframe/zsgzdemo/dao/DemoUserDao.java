@@ -12,7 +12,7 @@ public interface DemoUserDao {
 	/**
 	 * 增
 	 */
-	@Insert("insert into user(id, name) values(uuid(), #{name}, #{pwd)")
+	@Insert("insert into user(id, name, pwd) values(uuid(), #{name}, #{pwd})")
 	int addUser(DemoUser user);
 	
 	/**
