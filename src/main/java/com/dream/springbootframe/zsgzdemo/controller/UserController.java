@@ -1,7 +1,6 @@
 package com.dream.springbootframe.zsgzdemo.controller;
 
 
-import com.dream.springbootframe.zsgzdemo.dao.CsDao;
 import com.dream.springbootframe.zsgzdemo.entity.DemoUser;
 import com.dream.springbootframe.zsgzdemo.service.DemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import static java.lang.System.currentTimeMillis;
 
 /**
  * 
@@ -32,22 +28,8 @@ public class UserController {
 
 	@Autowired
 	private DemoUserService demoUserService;
-	@Autowired
-	private CsDao csDao;
 
-	/**
-	 * 测试
-	 */
-	@RequestMapping("/cs")
-	@ResponseBody
-	public String cs() {
-		long jdbcStrat = currentTimeMillis();
-		DemoUser user = new DemoUser(UUID.randomUUID().toString(), "vueName", "vuePwd");
-		csDao.add(user);
-		long jdbcEnd = System.currentTimeMillis();
-		System.out.println(jdbcEnd - jdbcStrat);
-		return "cs";
-	}
+	
 
 	/**
 	 * 增

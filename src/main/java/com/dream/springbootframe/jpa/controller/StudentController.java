@@ -23,7 +23,7 @@ import static java.lang.System.currentTimeMillis;
  *
  */
 @RestController
-@RequestMapping("/student")
+	@RequestMapping("/student")
 public class StudentController {
 
 	@Autowired
@@ -38,13 +38,13 @@ public class StudentController {
 	public String cs() {
 		long jdbcStrat = currentTimeMillis();
 		Student sd = new Student(UUID.randomUUID().toString(), "vueName", "1", "add1");
-		csDao.add(sd);
+		csDao.save(sd);
 		long jdbcEnd = currentTimeMillis();
 		System.out.println(jdbcEnd - jdbcStrat);
 
 		long jpaStrat = currentTimeMillis();
 		Student s = new Student(UUID.randomUUID().toString(), "vueName", "2", "add2");
-		csDao.add(s);
+		studentService.save(s);
 		long jpaEnd = currentTimeMillis();
 		System.out.println(jpaEnd - jpaStrat);
 		return "cs";
